@@ -39,6 +39,9 @@ if (app.Environment.IsDevelopment())
     app.UseCors(clientCorsPolicy);
 }
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
@@ -52,5 +55,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.MapFallbackToFile("index.html");
 
 app.Run();
