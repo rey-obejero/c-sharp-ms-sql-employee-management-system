@@ -1,4 +1,4 @@
-namespace EmployeeManagementSystem.Data.UnitOfWork;
+namespace EmployeeManagementSystem.Data;
 
 public sealed class UnitOfWork(AppDbContext context) : IUnitOfWork
 {

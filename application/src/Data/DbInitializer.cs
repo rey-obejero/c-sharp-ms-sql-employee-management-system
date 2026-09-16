@@ -23,8 +23,12 @@ public sealed class DbInitializer(
             return;
         }
 
-        var connectionString = context.Database.GetConnectionString()
-            ?? throw new InvalidOperationException("The database connection string is not configured.");
+        var connectionString = context.Database.GetConnectionString();
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException("The database connection string is not configured.");
+        }
 
         var masterConnectionString = new SqlConnectionStringBuilder(connectionString)
         {
