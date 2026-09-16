@@ -4,6 +4,8 @@ using EmployeeManagementSystem.Employees;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddSimpleConsole();
+
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddEmployees();
 builder.Services.AddProblemDetails();
