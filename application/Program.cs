@@ -11,6 +11,7 @@ builder.Services.AddEmployees();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddControllers();
+builder.Services.AddOpenApi();
 
 builder.Services
     .AddHealthChecks()
@@ -28,5 +29,10 @@ using (var scope = app.Services.CreateScope())
 
 app.MapControllers();
 app.MapHealthChecks("/health/ready");
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.Run();
