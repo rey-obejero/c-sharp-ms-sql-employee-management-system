@@ -1,11 +1,14 @@
 using EmployeeManagementSystem.Common;
 using EmployeeManagementSystem.Data;
+using EmployeeManagementSystem.Employees;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddData(builder.Configuration);
+builder.Services.AddEmployees();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -17,6 +20,6 @@ using (var scope = app.Services.CreateScope())
     await initializer.InitializeAsync();
 }
 
-app.MapGet("/", () => "EmployeeManagementSystem API");
+app.MapControllers();
 
 app.Run();
