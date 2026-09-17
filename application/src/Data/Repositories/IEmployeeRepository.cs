@@ -12,7 +12,5 @@ public interface IEmployeeRepository
 
     void Add(Employee employee);
 
-    void Update(Employee employee);
-
     void Remove(Employee employee);
 }

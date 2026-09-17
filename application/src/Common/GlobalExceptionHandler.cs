@@ -19,10 +19,6 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
                 StatusCodes.Status404NotFound,
                 "Not Found",
                 exception.Message),
-            ConflictException => (
-                StatusCodes.Status409Conflict,
-                "Conflict",
-                exception.Message),
             DbUpdateException { InnerException: SqlException { Number: 2601 or 2627 } } => (
                 StatusCodes.Status409Conflict,
                 "Conflict",
