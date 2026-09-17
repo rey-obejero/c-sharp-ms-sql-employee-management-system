@@ -1,11 +1,11 @@
-import { Search } from "lucide-react";
+import { Search } from 'lucide-react'
 
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input'
 
 type EmployeesSearchProps = {
-  value: string;
-  onChange: (value: string) => void;
-};
+  value: string
+  onChange: (value: string) => void
+}
 
 export function EmployeesSearch({ value, onChange }: EmployeesSearchProps) {
   return (
@@ -20,5 +20,5 @@ export function EmployeesSearch({ value, onChange }: EmployeesSearchProps) {
         onChange={(event) => onChange(event.target.value)}
       />
     </div>
-  );
+  )
 }
