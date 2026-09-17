@@ -14,8 +14,8 @@ import {
 } from '@/features/employees/hooks/use-employee-mutations'
 import { useEmployees } from '@/features/employees/hooks/use-employees'
 import type {
-  CreateEmployeeRequest,
   Employee,
+  EmployeeInput,
 } from '@/features/employees/types/employee'
 import { useDebouncedValue } from '@/hooks/use-debounced-value'
 import { getErrorMessage } from '@/lib/problem-details'
@@ -37,13 +37,13 @@ export function Employees() {
 
   const departments = departmentsQuery.data ?? []
 
-  const handleCreate = (values: CreateEmployeeRequest) => {
+  const handleCreate = (values: EmployeeInput) => {
     createMutation.mutate(values, {
       onSuccess: () => setIsCreateOpen(false),
     })
   }
 
-  const handleUpdate = (values: CreateEmployeeRequest) => {
+  const handleUpdate = (values: EmployeeInput) => {
     if (!editing) {
       return
     }

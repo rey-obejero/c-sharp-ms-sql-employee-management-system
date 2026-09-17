@@ -14,9 +14,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 import type {
-  CreateEmployeeRequest,
   Department,
   Employee,
+  EmployeeInput,
   EmployeeStatus,
 } from '../types/employee'
 
@@ -68,7 +68,7 @@ type EmployeeFormDialogProps = {
   employee?: Employee
   isSubmitting: boolean
   errorMessage?: string | null
-  onSubmit: (values: CreateEmployeeRequest) => void
+  onSubmit: (values: EmployeeInput) => void
 }
 
 export function EmployeeFormDialog({
