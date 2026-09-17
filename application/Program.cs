@@ -13,19 +13,6 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-const string clientCorsPolicy = "Client";
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(clientCorsPolicy, policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:5173", "http://127.0.0.1:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
-
 builder.Services
     .AddHealthChecks()
     .AddDbContextCheck<AppDbContext>();
@@ -33,11 +20,6 @@ builder.Services
 var app = builder.Build();
 
 app.UseExceptionHandler();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors(clientCorsPolicy);
-}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
