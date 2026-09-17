@@ -29,6 +29,7 @@ type EmployeesTableProps = {
   isLoading: boolean
   isError: boolean
   onEdit: (employee: Employee) => void
+  onDelete: (employee: Employee) => void
 }
 
 export function EmployeesTable({
@@ -36,6 +37,7 @@ export function EmployeesTable({
   isLoading,
   isError,
   onEdit,
+  onDelete,
 }: EmployeesTableProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-card">
@@ -151,6 +153,7 @@ export function EmployeesTable({
                       variant="ghost"
                       size="icon-sm"
                       aria-label={`Delete ${employee.firstName} ${employee.lastName}`}
+                      onClick={() => onDelete(employee)}
                       className="text-muted-foreground hover:bg-transparent hover:text-foreground cursor-pointer"
                     >
                       <Trash2 />

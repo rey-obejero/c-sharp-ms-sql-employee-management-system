@@ -28,3 +28,14 @@ export function useUpdateEmployee() {
     },
   })
 }
+
+export function useDeleteEmployee() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (id: number) => employeesApi.remove(id),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['employees'] })
+    },
+  })
+}

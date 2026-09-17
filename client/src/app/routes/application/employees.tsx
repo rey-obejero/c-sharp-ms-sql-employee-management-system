@@ -2,12 +2,14 @@ import { Plus } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { DeleteEmployeeDialog } from '@/features/employees/components/delete-employee-dialog'
 import { EmployeeFormDialog } from '@/features/employees/components/employee-form-dialog'
 import { EmployeesSearch } from '@/features/employees/components/employees-search'
 import { EmployeesTable } from '@/features/employees/components/employees-table'
 import { useDepartments } from '@/features/employees/hooks/use-departments'
 import {
   useCreateEmployee,
+  useDeleteEmployee,
   useUpdateEmployee,
 } from '@/features/employees/hooks/use-employee-mutations'
 import { useEmployees } from '@/features/employees/hooks/use-employees'
@@ -24,12 +26,14 @@ export function Employees() {
 
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [editing, setEditing] = useState<Employee | null>(null)
+  const [deleting, setDeleting] = useState<Employee | null>(null)
 
   const employeesQuery = useEmployees(debouncedSearch)
   const departmentsQuery = useDepartments()
 
   const createMutation = useCreateEmployee()
   const updateMutation = useUpdateEmployee()
+  const deleteMutation = useDeleteEmployee()
 
   const departments = departmentsQuery.data ?? []
 
@@ -48,6 +52,16 @@ export function Employees() {
       { id: Number(editing.id), data: values },
       { onSuccess: () => setEditing(null) },
     )
+  }
+
+  const handleDelete = () => {
+    if (!deleting) {
+      return
+    }
+
+    deleteMutation.mutate(Number(deleting.id), {
+      onSuccess: () => setDeleting(null),
+    })
   }
 
   return (
@@ -72,6 +86,7 @@ export function Employees() {
         isLoading={employeesQuery.isPending}
         isError={employeesQuery.isError}
         onEdit={setEditing}
+        onDelete={setDeleting}
       />
 
       <EmployeeFormDialog
@@ -101,6 +116,21 @@ export function Employees() {
           updateMutation.isError ? getErrorMessage(updateMutation.error) : null
         }
         onSubmit={handleUpdate}
+      />
+
+      <DeleteEmployeeDialog
+        open={deleting !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            setDeleting(null)
+          }
+        }}
+        employee={deleting ?? undefined}
+        isSubmitting={deleteMutation.isPending}
+        errorMessage={
+          deleteMutation.isError ? getErrorMessage(deleteMutation.error) : null
+        }
+        onConfirm={handleDelete}
       />
     </div>
   )
