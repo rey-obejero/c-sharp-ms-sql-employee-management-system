@@ -41,26 +41,3 @@ BEGIN
     CREATE INDEX IX_Employees_Name ON dbo.Employees (LastName, FirstName);
 END
 GO
-
-IF OBJECT_ID(N'dbo.vw_EmployeeDirectory', N'V') IS NULL
-BEGIN
-    EXEC(N'
-        CREATE VIEW dbo.vw_EmployeeDirectory
-        AS
-        SELECT
-            e.EmployeeId,
-            e.FirstName,
-            e.LastName,
-            e.Email,
-            e.Phone,
-            e.Position,
-            e.HireDate,
-            e.Status,
-            e.Salary,
-            d.DepartmentId,
-            d.Name AS DepartmentName
-        FROM dbo.Employees AS e
-        INNER JOIN dbo.Departments AS d ON d.DepartmentId = e.DepartmentId;
-    ');
-END
-GO
