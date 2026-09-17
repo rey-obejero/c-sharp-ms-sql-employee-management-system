@@ -9,7 +9,7 @@ namespace EmployeeManagementSystem.Employees.Services;
 
 public sealed class EmployeeService(
     IEmployeeRepository employeeRepository,
-    IUnitOfWork unitOfWork) : IEmployeeService
+    AppDbContext context) : IEmployeeService
 {
     public async Task<IReadOnlyList<EmployeeResponse>> SearchAsync(
         EmployeeSearchRequest request,
@@ -49,7 +49,7 @@ public sealed class EmployeeService(
         };
 
         employeeRepository.Add(employee);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
 
         var created = await GetEmployeeAsync(employee.EmployeeId, cancellationToken);
 
@@ -75,7 +75,7 @@ public sealed class EmployeeService(
         employee.UpdatedAt = DateTime.UtcNow;
 
         employeeRepository.Update(employee);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
@@ -83,7 +83,7 @@ public sealed class EmployeeService(
         var employee = await GetEmployeeAsync(id, cancellationToken);
 
         employeeRepository.Remove(employee);
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 
     private async Task<Employee> GetEmployeeAsync(int id, CancellationToken cancellationToken)
