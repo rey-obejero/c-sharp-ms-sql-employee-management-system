@@ -9,10 +9,9 @@ public sealed class EmployeeRepository(AppDbContext context) : IEmployeeReposito
         string? search,
         CancellationToken cancellationToken = default)
     {
-        var query = context.Employees
+        IQueryable<Employee> query = context.Employees
             .AsNoTracking()
-            .Include(e => e.Department)
-            .AsQueryable();
+            .Include(e => e.Department);
 
         if (!string.IsNullOrWhiteSpace(search))
         {
@@ -37,8 +36,6 @@ public sealed class EmployeeRepository(AppDbContext context) : IEmployeeReposito
     }
 
     public void Add(Employee employee) => context.Employees.Add(employee);
-
-    public void Update(Employee employee) => context.Employees.Update(employee);
 
     public void Remove(Employee employee) => context.Employees.Remove(employee);
 }

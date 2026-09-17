@@ -74,7 +74,6 @@ public sealed class EmployeeService(
         employee.Salary = request.Salary;
         employee.UpdatedAt = DateTime.UtcNow;
 
-        employeeRepository.Update(employee);
         await context.SaveChangesAsync(cancellationToken);
     }
 

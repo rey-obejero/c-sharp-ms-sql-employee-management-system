@@ -21,7 +21,6 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 
-app.UseDefaultFiles();
 app.UseStaticFiles();
 
 using (var scope = app.Services.CreateScope())
