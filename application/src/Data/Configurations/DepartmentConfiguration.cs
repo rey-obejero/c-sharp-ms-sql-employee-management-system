@@ -17,8 +17,7 @@ public sealed class DepartmentConfiguration : IEntityTypeConfiguration<Departmen
             .IsRequired();
 
         builder.HasIndex(d => d.Name)
-            .IsUnique()
-            .HasDatabaseName("UX_Departments_Name");
+            .IsUnique();
 
         builder.Property(d => d.CreatedAt)
             .HasColumnType("datetime2");

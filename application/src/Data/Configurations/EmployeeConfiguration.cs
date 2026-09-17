@@ -8,8 +8,7 @@ public sealed class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 {
     public void Configure(EntityTypeBuilder<Employee> builder)
     {
-        builder.ToTable("Employees", table =>
-            table.HasCheckConstraint("CK_Employees_Status", "[Status] IN ('Active', 'Inactive')"));
+        builder.ToTable("Employees");
 
         builder.HasKey(e => e.EmployeeId);
 
@@ -26,8 +25,7 @@ public sealed class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .IsRequired();
 
         builder.HasIndex(e => e.Email)
-            .IsUnique()
-            .HasDatabaseName("UX_Employees_Email");
+            .IsUnique();
 
         builder.Property(e => e.Phone)
             .HasMaxLength(30);
@@ -52,13 +50,11 @@ public sealed class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.Property(e => e.UpdatedAt)
             .HasColumnType("datetime2");
 
-        builder.HasIndex(e => new { e.LastName, e.FirstName })
-            .HasDatabaseName("IX_Employees_Name");
+        builder.HasIndex(e => new { e.LastName, e.FirstName });
 
         builder.HasOne(e => e.Department)
             .WithMany(d => d.Employees)
             .HasForeignKey(e => e.DepartmentId)
-            .OnDelete(DeleteBehavior.Restrict)
-            .HasConstraintName("FK_Employees_Departments");
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
