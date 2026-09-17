@@ -1,11 +1,11 @@
-import { Search } from 'lucide-react'
+import { Search } from "lucide-react";
 
-import { Input } from '@/components/ui/input'
+import { Input } from "@/components/ui/input";
 
 type EmployeesSearchProps = {
-  value: string
-  onChange: (value: string) => void
-}
+  value: string;
+  onChange: (value: string) => void;
+};
 
 export function EmployeesSearch({ value, onChange }: EmployeesSearchProps) {
   return (
@@ -13,12 +13,12 @@ export function EmployeesSearch({ value, onChange }: EmployeesSearchProps) {
       <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
       <Input
         type="search"
-        placeholder="Search by name, email…"
+        placeholder="Search by name or email"
         aria-label="Search employees"
         className="rounded-lg pl-9"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       />
     </div>
-  )
+  );
 }
