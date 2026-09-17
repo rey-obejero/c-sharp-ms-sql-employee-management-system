@@ -31,7 +31,6 @@ flowchart LR
 ### Prerequisites
 
 - Docker with Docker Compose
-- .NET 10 SDK and Node.js 22+ with pnpm, only for running the tests
 
 ### Containerized
 
