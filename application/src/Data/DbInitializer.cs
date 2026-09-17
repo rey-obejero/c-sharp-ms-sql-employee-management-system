@@ -13,7 +13,7 @@ public sealed class DbInitializer(
 {
     private const string DatabaseName = "EmployeeManagementSystem";
     private static readonly string ScriptsPath =
-        Path.Combine(AppContext.BaseDirectory, "src", "Data", "Scripts");
+        Path.Combine(AppContext.BaseDirectory, "Data", "Scripts");
 
     public async Task InitializeAsync(CancellationToken cancellationToken = default)
     {
