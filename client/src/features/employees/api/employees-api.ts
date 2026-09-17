@@ -16,12 +16,6 @@ export const employeesApi = {
     return response.data
   },
 
-  get: async (id: number): Promise<Employee> => {
-    const response = await apiClient.get<Employee>(`/employees/${id}`)
-
-    return response.data
-  },
-
   create: async (data: CreateEmployeeRequest): Promise<Employee> => {
     const response = await apiClient.post<Employee>('/employees', data)
 
