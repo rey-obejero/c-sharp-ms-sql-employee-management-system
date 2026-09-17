@@ -166,9 +166,9 @@ export function EmployeesTable({
         </TableBody>
       </Table>
       <div className="border-t border-border px-3 py-2 text-body-sm text-muted-foreground">
-        {employees.length === 0
-          ? 'No employees to display.'
-          : `Viewing 1 to ${employees.length} of ${employees.length} employees.`}
+        {employees.length === 1
+          ? '1 employee.'
+          : `${employees.length} employees.`}
       </div>
     </div>
   )
