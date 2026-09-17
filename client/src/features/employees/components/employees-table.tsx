@@ -28,12 +28,14 @@ type EmployeesTableProps = {
   employees: Employee[]
   isLoading: boolean
   isError: boolean
+  onEdit: (employee: Employee) => void
 }
 
 export function EmployeesTable({
   employees,
   isLoading,
   isError,
+  onEdit,
 }: EmployeesTableProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-card">
@@ -139,6 +141,7 @@ export function EmployeesTable({
                       variant="ghost"
                       size="icon-sm"
                       aria-label={`Edit ${employee.firstName} ${employee.lastName}`}
+                      onClick={() => onEdit(employee)}
                       className="text-muted-foreground hover:bg-transparent hover:text-foreground cursor-pointer"
                     >
                       <Pencil />
