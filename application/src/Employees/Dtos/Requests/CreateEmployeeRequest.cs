@@ -11,4 +11,4 @@ public sealed record CreateEmployeeRequest(
     string? Position,
     DateOnly HireDate,
     EmployeeStatus Status,
-    decimal Salary);
+    decimal Salary) : IEmployeeRequest;
