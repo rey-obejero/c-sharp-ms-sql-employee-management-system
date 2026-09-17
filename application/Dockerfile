@@ -10,10 +10,10 @@ RUN pnpm build
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /source
-COPY application/EmployeeManagementSystem.Api.csproj application/
-RUN dotnet restore application/EmployeeManagementSystem.Api.csproj
+COPY application/src/EmployeeManagementSystem.Api.csproj application/src/
+RUN dotnet restore application/src/EmployeeManagementSystem.Api.csproj
 COPY application/ application/
-RUN dotnet publish application/EmployeeManagementSystem.Api.csproj \
+RUN dotnet publish application/src/EmployeeManagementSystem.Api.csproj \
     --configuration Release \
     --no-restore \
     --output /app/publish \

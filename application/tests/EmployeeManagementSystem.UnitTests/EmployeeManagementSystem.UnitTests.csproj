@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../EmployeeManagementSystem.Api.csproj" />
+    <ProjectReference Include="../../src/EmployeeManagementSystem.Api.csproj" />
   </ItemGroup>
 
 </Project>
