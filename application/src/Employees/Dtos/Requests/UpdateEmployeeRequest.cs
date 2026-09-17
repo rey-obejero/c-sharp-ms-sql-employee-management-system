@@ -11,4 +11,4 @@ public sealed record UpdateEmployeeRequest(
     string? Position,
     DateOnly HireDate,
     EmployeeStatus Status,
-    decimal Salary);
+    decimal Salary) : IEmployeeRequest;
