@@ -25,7 +25,7 @@
 ```mermaid
 flowchart LR
     client["Browser"] --> api["API container<br/>localhost:8080"]
-    api --> database[("SQL Server container<br/>localhost:1433")]
+    api --> database[("SQL Server container")]
 ```
 
 ## Getting Started
